@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "fmod-studio": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/yuke-x68/fmod-studio-mcp",
+        "fmod-studio-mcp"
+      ],
+      "env": {
+        "FMOD_MCP_HOST": "localhost",
+        "FMOD_MCP_PORT": "3663"
+      }
+    }
+  }
+}

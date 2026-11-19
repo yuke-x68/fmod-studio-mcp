@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fmod-studio-mcp"
+version = "2.0.0"
+description = "MCP server for controlling FMOD Studio via TCP:3663 Scripting Terminal"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "yuke" }]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.2.0,<2",
+]
+
+[project.urls]
+Repository = "https://github.com/yuke-x68/fmod-studio-mcp"
+
+[project.scripts]
+fmod-studio-mcp = "fmod_studio_mcp.server:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fmod_studio_mcp"]
