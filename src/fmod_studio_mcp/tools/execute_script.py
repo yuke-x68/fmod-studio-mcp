@@ -10,7 +10,7 @@ from fmod_studio_mcp.bridge import FmodTcpClient
 from fmod_studio_mcp.bridge.security import scan_script
 
 if TYPE_CHECKING:
-    from mcp.server.fastmcp import FastMCP
+    from mcp.server.mcpserver import MCPServer
 
 logger = logging.getLogger(__name__)
 
@@ -198,7 +198,7 @@ async def execute_script(
 
 
 def register(
-    mcp_server: "FastMCP",
+    mcp_server: "MCPServer",
     get_client: Callable[[], tuple[FmodTcpClient, object]],
 ) -> None:
     """Register execute_script tool with the MCP server."""

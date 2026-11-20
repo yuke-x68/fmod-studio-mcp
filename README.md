@@ -9,7 +9,7 @@ Claude Code などの MCP クライアントから、FMOD Studio 上で JavaScri
 MCP Client (Claude Code など)
    │  stdio (JSON-RPC)
    ▼
-fmod-studio-mcp (Python / FastMCP)  ← uv / uvx で起動
+fmod-studio-mcp (Python / MCP SDK v2: MCPServer)  ← uv / uvx で起動
    │  TCP:3663 (JavaScript)
    ▼
 FMOD Studio (内蔵 Scripting Terminal)

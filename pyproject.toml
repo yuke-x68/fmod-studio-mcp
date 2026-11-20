@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "fmod-studio-mcp"
-version = "2.0.0"
+version = "2.1.0"
 description = "MCP server for controlling FMOD Studio via TCP:3663 Scripting Terminal"
 readme = "README.md"
 license = "MIT"
@@ -12,7 +12,7 @@ license-files = ["LICENSE"]
 authors = [{ name = "yuke" }]
 requires-python = ">=3.10"
 dependencies = [
-    "mcp[cli]>=1.2.0,<2",
+    "mcp[cli]>=2.3.0,<3",
 ]
 
 [project.urls]

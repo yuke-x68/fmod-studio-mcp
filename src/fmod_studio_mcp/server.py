@@ -1,4 +1,4 @@
-"""FastMCP server entry point — tool registration and wiring (Section 2.2)."""
+"""MCPServer entry point — tool registration and wiring (Section 2.2)."""
 
 from __future__ import annotations
 
@@ -8,14 +8,24 @@ import sys
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as _pkg_version
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 from fmod_studio_mcp.bridge import BridgeConfig, FmodTcpClient
 from fmod_studio_mcp.tools import register_all_tools
 
 logger = logging.getLogger(__name__)
 
-mcp = FastMCP("fmod-studio")
+
+def _get_version() -> str:
+    """Return the installed package version, or "unknown" if not installed."""
+    try:
+        return _pkg_version("fmod-studio-mcp")
+    except PackageNotFoundError:
+        return "unknown"
+
+
+# mcp 2.x reports an empty serverInfo.version unless one is passed explicitly.
+mcp = MCPServer("fmod-studio", version=_get_version())
 
 # Shared instances (lazy-initialized on first tool call)
 _config: BridgeConfig | None = None
@@ -81,12 +91,8 @@ def _configure_logging(argv: list[str] | None = None) -> int:
     )
 
     # Print startup info to stderr (stdout is reserved for MCP JSON-RPC protocol)
-    try:
-        ver = _pkg_version("fmod-studio-mcp")
-    except PackageNotFoundError:
-        ver = "unknown"
     cfg = BridgeConfig()
-    sys.stderr.write(f"FMOD Studio MCP Server v{ver}\n")
+    sys.stderr.write(f"FMOD Studio MCP Server v{_get_version()}\n")
     sys.stderr.write(f"Connecting to FMOD Studio at {cfg.host}:{cfg.port}\n")
     sys.stderr.flush()
 

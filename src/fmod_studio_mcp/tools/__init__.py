@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Callable
 from fmod_studio_mcp.tools import execute_script
 
 if TYPE_CHECKING:
-    from mcp.server.fastmcp import FastMCP
+    from mcp.server.mcpserver import MCPServer
 
     from fmod_studio_mcp.bridge import BridgeConfig, FmodTcpClient
 
@@ -22,13 +22,13 @@ _TOOL_MODULES = [
 
 
 def register_all_tools(
-    mcp_server: FastMCP,
+    mcp_server: MCPServer,
     get_client: Callable[[], tuple[FmodTcpClient, BridgeConfig]],
 ) -> None:
     """Discover and register all tool modules with the MCP server.
 
     Args:
-        mcp_server: The FastMCP server instance.
+        mcp_server: The MCPServer instance.
         get_client: Factory function returning (FmodTcpClient, BridgeConfig).
     """
     for module in _TOOL_MODULES:
